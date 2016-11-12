@@ -4,7 +4,6 @@ import {
   View,
   StyleSheet,
 	Navigator,
-  Toucha,
   TouchableOpacity
 } from 'react-native'
 import {connect} from 'react-redux';
