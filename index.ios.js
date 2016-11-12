@@ -12,7 +12,7 @@ import { createStore, applyMiddleware } from 'redux'
 import thunk from 'redux-thunk'
 import reducers from './reducers'
 
-import AppContainer from './components/App'
+import App from './components/App'
 
 
 let store = createStore(reducers, applyMiddleware(thunk))

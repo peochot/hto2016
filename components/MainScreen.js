@@ -3,7 +3,9 @@ import {
   Text,
   View,
   StyleSheet,
-	Navigator
+	Navigator,
+  Toucha,
+  TouchableOpacity
 } from 'react-native'
 import { connect } from 'react-redux';
 
@@ -23,11 +25,15 @@ class MainScreen extends Component {
 	}
 
 	render() {
-    let content
 		return (
       <View style={styles.container}>
-        <Text style={styles.welcome}  onPress={()=>this.props.navigator.push({name: 'SomeRoute'}) }>Web</Text>
-        {content}
+        <TouchableOpacity style={[styles.border, {borderBottomWidth: 0}]} onPress={()=>this.props.navigator.push({name: 'SomeRoute'})}><Text style={styles.text}>COMPANY</Text></TouchableOpacity>
+        <View style={{flex: 6, flexDirection: 'row'}}>
+          <TouchableOpacity style={[styles.border, {borderRightWidth: 0}]} onPress={()=>this.props.navigator.push({name: 'SomeRoute'})}><Text style={styles.text}>ROOM 1</Text></TouchableOpacity>
+          <TouchableOpacity style={[styles.border, {borderRightWidth:0}]} onPress={()=>this.props.navigator.push({name: 'SomeRoute'})}><Text style={styles.text}>ROOM 2</Text></TouchableOpacity>
+          <TouchableOpacity style={styles.border} onPress={()=>this.props.navigator.push({name: 'SomeRoute'})}><Text style={styles.text}>ROOM 3</Text></TouchableOpacity>
+        </View>
+        <TouchableOpacity style={[styles.border, {borderTopWidth: 0}]} onPress={()=>this.props.navigator.push({name: 'SomeRoute'})}><Text style={styles.text}>LEADERBOARD</Text></TouchableOpacity>
       </View>
 		)
 	}
@@ -35,20 +41,20 @@ class MainScreen extends Component {
 const styles = StyleSheet.create({
   container: {
     flex: 1,
+    margin: 10
+  },
+  border: {
+    flex: 2,
+    borderWidth:5,
+    borderColor: 'powderblue',
     justifyContent: 'center',
-    alignItems: 'center',
-    backgroundColor: '#F5FCFF',
+    alignItems: 'center'
   },
-  welcome: {
-    fontSize: 20,
-    textAlign: 'center',
-    margin: 10,
-  },
-  instructions: {
-    textAlign: 'center',
-    color: '#333333',
-    marginBottom: 5,
-  },
+  text: {
+    fontSize: 25,
+    fontWeight: 'bold',
+    color: 'navy'
+  }
 });
 
 export default MainScreen
