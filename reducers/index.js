@@ -1,8 +1,8 @@
 import { combineReducers } from 'redux'
 
-let initRooms =[{id:1,name:"Room 1",average:100,yesterday:50,today:10},
-            {id:2,name:"Room 2",average:100,yesterday:110,today:140},
-            {id:3,name:"Room 3",average:80,yesterday:90,today:120}];
+let initRooms =[{id:1,name:"Room 1",average:100,yesterday:50,today:156},
+            {id:2,name:"Room 2",average:100,yesterday:110,today:147},
+            {id:3,name:"Room 3",average:80,yesterday:90,today:132}];
 
 function rooms(state=initRooms , action) {
   switch (action.type) {
