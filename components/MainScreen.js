@@ -7,13 +7,7 @@ import {
   Toucha,
   TouchableOpacity
 } from 'react-native'
-import { connect } from 'react-redux';
 
-const mapStateToProps = ({selectedTab}) => ({selectedTab});
-
-const mapDispatchToProps = dispatch => ({
-//
-});
 
 class MainScreen extends Component {
 	constructor(props) {
@@ -33,7 +27,7 @@ class MainScreen extends Component {
           <TouchableOpacity style={[styles.border, {borderRightWidth:0}]} onPress={()=>this.props.navigator.push({name: 'SomeRoute'})}><Text style={styles.text}>ROOM 2</Text></TouchableOpacity>
           <TouchableOpacity style={styles.border} onPress={()=>this.props.navigator.push({name: 'SomeRoute'})}><Text style={styles.text}>ROOM 3</Text></TouchableOpacity>
         </View>
-        <TouchableOpacity style={[styles.border, {borderTopWidth: 0}]} onPress={()=>this.props.navigator.push({name: 'SomeRoute'})}><Text style={styles.text}>LEADERBOARD</Text></TouchableOpacity>
+        <TouchableOpacity style={[styles.border, {borderTopWidth: 0}]} onPress={()=>this.props.navigator.push({name: 'LeaderBoard'})}><Text style={styles.text}>LEADERBOARD</Text></TouchableOpacity>
       </View>
 		)
 	}

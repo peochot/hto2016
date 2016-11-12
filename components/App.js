@@ -9,7 +9,8 @@ import {
 import routes from '../routes'
 import MainScreen from './MainScreen'
 import NavBarRouteMapper from './NavBarRouteMapper'
-
+import LeaderBoard from './LeaderBoard';
+import RoomDetail from './RoomDetail';
 
 class App extends Component {
 	constructor(props) {
@@ -19,8 +20,10 @@ class App extends Component {
 
 	_renderScene(route, navigator) {
 		switch (route.name) {
-		case 'SomeRoute':
-			return <Text>Con kec</Text>
+		case 'LeaderBoard':
+			return <LeaderBoard navigator={navigator} />
+		case 'RoomDetail':
+			return <RoomDetail navigator={navigator} />
 		case 'MainScreen':
 		default:
 			return <MainScreen navigator={navigator} />
