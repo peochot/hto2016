@@ -6,9 +6,9 @@ const mapStateToProps = ({rooms,selectedRoom}) => ({rooms,selectedRoom});
 
 const RoomDetail = props => (
       <View>
-          <Text>Average :{props.rooms[props.selectedRoom]}</Text>
-          <Text>Yesterday :{props.name}</Text>
-          <Text>Today :</Text>
+          <Text>Average :{props.rooms[props.selectedRoom].average}</Text>
+          <Text>Yesterday :{props.rooms[props.selectedRoom].yesterday}</Text>
+          <Text>Today :{props.rooms[props.selectedRoom].today}</Text>
           <Image source={{uri: 'https://facebook.github.io/react/img/logo_og.png'}}/>
       </View>
     );
