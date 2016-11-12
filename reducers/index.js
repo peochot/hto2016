@@ -20,16 +20,9 @@ function selectedRoom(state=0 , action) {
 	}
 }
 
-function reducer3(state=[] , action) {
-  switch (action.type) {
-	default:
-		return state
-	}
-}
 const reducers = combineReducers({
 	rooms,
-	selectedRoom,
-	reducer3
+	selectedRoom
 })
 
 export default reducers

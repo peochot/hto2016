@@ -9,8 +9,8 @@ const mapDispatchToProps = dispatch => ({
  const LeaderBoardRow = props => (
       <View style={{flexDirection: 'row'}}>
           <Text>{props.room.id+". "}</Text>
-          <Text onPress={()=> {props.selectRoom(props.room.Id-1);props.navigator.push({name: 'RoomDetail'})}}>{props.room.name}</Text>
-          <Text></Text>
+          <Text onPress={()=> {props.selectRoom(props.room.id-1);props.navigator.push({name: 'RoomDetail'})}}>{props.room.name}:</Text>
+          <Text>{props.room.today}</Text>
       </View>
     );
 export default connect(null,mapDispatchToProps)(LeaderBoardRow);
