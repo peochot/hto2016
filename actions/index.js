@@ -4,8 +4,9 @@ export function changeTab(key){
     key
   }
 }
-export function whatever(){
+export function selectRoom(roomId){
   return {
-    type:"whatever"
+    type:"SELECT_ROOM",
+    roomId
   }
 }

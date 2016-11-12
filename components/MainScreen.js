@@ -5,13 +5,7 @@ import {
   StyleSheet,
 	Navigator
 } from 'react-native'
-import { connect } from 'react-redux';
 
-const mapStateToProps = ({selectedTab}) => ({selectedTab});
-
-const mapDispatchToProps = dispatch => ({
-//
-});
 
 class MainScreen extends Component {
 	constructor(props) {
@@ -26,7 +20,7 @@ class MainScreen extends Component {
     let content
 		return (
       <View style={styles.container}>
-        <Text style={styles.welcome}  onPress={()=>this.props.navigator.push({name: 'SomeRoute'}) }>Web</Text>
+        <Text style={styles.welcome}  onPress={()=>this.props.navigator.push({name: 'LeaderBoard'}) }>Web</Text>
         {content}
       </View>
 		)
