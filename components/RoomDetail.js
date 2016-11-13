@@ -56,6 +56,12 @@ const styles = StyleSheet.create({
   },
   title:{
     marginBottom:20
+  },
+  diffRed:{
+    color: 'red'
+  },
+  diffGreen:{
+    color: 'green'
   }
 });
 var happyPkm = require("../imgs/happy_pkm.png");
@@ -99,6 +105,12 @@ class RoomDetail extends Component {
 
   render(){
     const whyButton = <TouchableOpacity style={styles.border} onPress={this.openModal}><Text style={{color: 'white', fontSize: 18, fontWeight: 'bold'}}>Why ?</Text></TouchableOpacity>
+    var diffStyle;
+    if(this.room.today>this.room.average){
+      diffStyle = styles.diffRed;
+    } else {
+      diffStyle = styles.diffGreen;
+    }
     return (
       <View style={styles.content}>
         <View style={{flex: 1, marginBottom: 15}}>
@@ -109,12 +121,12 @@ class RoomDetail extends Component {
           <Text style={[styles.bigSize,styles.rightView]}>{this.room.average}€</Text>
         </View>
         <View style={styles.rowContainer}>
-          <Text style={[styles.smallSize,styles.leftView]}>Yesterday : </Text>
-          <Text style={[styles.bigSize,styles.rightView]}>{this.room.yesterday}€</Text>
-        </View>
-        <View style={styles.rowContainer}>
           <Text style={[styles.smallSize,styles.leftView]}>Today :</Text>
           <Text style={[styles.bigSize,styles.rightView]}>{this.room.today}€</Text>
+        </View>
+        <View style={styles.rowContainer}>
+          <Text style={[styles.smallSize,styles.leftView]}>Difference : </Text>
+          <Text style={[styles.bigSize,styles.rightView, diffStyle]}>{(100-((this.room.today/this.room.average)*100)).toFixed(2)}%</Text>
         </View>
 
         <View style={{flex:6}}>
