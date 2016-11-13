@@ -8,7 +8,7 @@ const styles = StyleSheet.create({
   content: {
     flex: 1,
     flexDirection: 'column',
-    justifyContent: 'center',
+    justifyContent: 'space-between',
     alignItems: 'center',
   },
   bigSize: {
@@ -42,7 +42,7 @@ const styles = StyleSheet.create({
     fontSize: 22
   },
   rowContainer:{
-    flex:1,
+    flex:1.5,
     flexDirection:"row"
   },
   leftView:{
@@ -65,7 +65,7 @@ const alertMessage =
   At 9:30, energy consumed for lightning peaked at 7 kWh. At 11:00, energy consumed for heating peaked at 10 kWh";
 </Text>;
 const efficientText =
-  <View>
+  <View style={{marginTop: 15}}>
     <Text style={{color: 'green', fontSize: 20}}>Keep up the good work!</Text>
   </View>;
 class RoomDetail extends Component {
@@ -101,22 +101,24 @@ class RoomDetail extends Component {
     const whyButton = <TouchableOpacity style={styles.border} onPress={this.openModal}><Text style={{color: 'white', fontSize: 18, fontWeight: 'bold'}}>Why ?</Text></TouchableOpacity>
     return (
       <View style={styles.content}>
-        <Text style={styles.bigSize}>Energy Cost
-        </Text>
+        <View style={{flex: 1, marginBottom: 15}}>
+          <Text style={styles.bigSize}>Energy Cost</Text>
+        </View>
         <View style={styles.rowContainer}>
           <Text style={[styles.smallSize,styles.leftView]}>Monthly average :</Text>
-          <Text style={[styles.bigSize,styles.rightView]}>{this.room.average}</Text>
+          <Text style={[styles.bigSize,styles.rightView]}>{this.room.average}€</Text>
         </View>
         <View style={styles.rowContainer}>
           <Text style={[styles.smallSize,styles.leftView]}>Yesterday : </Text>
-          <Text style={[styles.bigSize,styles.rightView]}>{this.room.yesterday}</Text>
+          <Text style={[styles.bigSize,styles.rightView]}>{this.room.yesterday}€</Text>
         </View>
         <View style={styles.rowContainer}>
           <Text style={[styles.smallSize,styles.leftView]}>Today :</Text>
-          <Text style={[styles.bigSize,styles.rightView]}>{this.room.today}</Text>
+          <Text style={[styles.bigSize,styles.rightView]}>{this.room.today}€</Text>
         </View>
 
-          <Image source={this.room.today < this.room.average ? happyPkm : sadPkm} resizeMode="stretch" style={{maxWidth: 190, height:200, marginTop: 25, marginBottom: 15}}/>
+        <View style={{flex:6}}>
+          <Image source={this.room.today < this.room.average ? happyPkm : sadPkm} resizeMode="stretch" style={{maxWidth: 190, height:200, marginBottom: 15}}/>
           {
             this.room.today < this.room.average ?
             efficientText : null
@@ -125,6 +127,7 @@ class RoomDetail extends Component {
             this.room.today < this.room.average ?
             null : whyButton
           }
+        </View>
         <Modal style={[styles.modal, styles.modal4]} position={"bottom"} ref={"modal4"}>
           <Text style={{color: 'black', fontSize: 18, margin: 10}}>
             At 9:30, energy consumed for lightning peaked at <Text style={{color: 'red', fontWeight: 'bold', fontSize: 22}}>7 kWh</Text>

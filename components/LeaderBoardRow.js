@@ -20,7 +20,7 @@ const mapDispatchToProps = dispatch => ({
          </View>
          <Text style={styles.text}>{props.room.id+". "}</Text>
          <Text style={[styles.roomNumber, styles.text]} onPress={()=> {props.selectRoom(props.room.id);props.navigator.push({name: 'RoomDetail'})}}>{props.room.name}: </Text>
-         <Text style={[styles.text, styles.today]}>{props.room.today}</Text>
+         <Text style={[styles.text, styles.today]}>{props.room.total}€</Text>
          <Text style={styles.arrow}>
              {props.room.id == "1" && arrowUp}
              {props.room.id == "3" && arrowDown}
@@ -30,7 +30,8 @@ const mapDispatchToProps = dispatch => ({
 
 const styles = StyleSheet.create({
     container: {
-        flexDirection: 'row'
+        flexDirection: 'row',
+        marginTop: 25
     },
     roomNumber: {
         fontWeight: 'bold'
@@ -41,7 +42,7 @@ const styles = StyleSheet.create({
         textAlign: 'left'
     },
     trophy: {
-        flexBasis: 100,
+        flexBasis: 40,
         marginLeft: 15,
         marginTop: 5
     }, today: {
