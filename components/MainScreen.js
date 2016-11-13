@@ -16,18 +16,15 @@ class MainScreen extends Component {
 		super(props)
     this.props=props;
 	}
-	componentDidMount() {
-
-	}
 
 	render() {
 		return (
       <View style={styles.container}>
-        <TouchableOpacity style={[styles.border, {borderBottomWidth: 0}]} onPress={()=>this.props.navigator.push({name: 'SomeRoute'})}><Text style={styles.text}>COMPANY</Text></TouchableOpacity>
+        <TouchableOpacity style={[styles.border, {borderBottomWidth: 0}]} onPress={()=>{this.props.selectRoom(-1);this.props.navigator.push({name: 'RoomDetail'})}}><Text style={styles.text}>COMPANY</Text></TouchableOpacity>
         <View style={{flex: 6, flexDirection: 'row'}}>
-          <TouchableOpacity style={[styles.border, {borderRightWidth: 0}]} onPress={()=>{this.props.selectRoom(0);this.props.navigator.push({name: 'RoomDetail'})}}><Text style={styles.text}>ROOM 1</Text></TouchableOpacity>
-          <TouchableOpacity style={[styles.border, {borderRightWidth:0}]} onPress={()=>{this.props.selectRoom(1);this.props.navigator.push({name: 'RoomDetail'})}}><Text style={styles.text}>ROOM 2</Text></TouchableOpacity>
-          <TouchableOpacity style={styles.border} onPress={()=>{this.props.selectRoom(2);this.props.navigator.push({name: 'RoomDetail'})}}><Text style={styles.text}>ROOM 3</Text></TouchableOpacity>
+          <TouchableOpacity style={[styles.border, {borderRightWidth: 0}]} onPress={()=>{this.props.selectRoom(1);this.props.navigator.push({name: 'RoomDetail'})}}><Text style={styles.text}>ROOM 1</Text></TouchableOpacity>
+          <TouchableOpacity style={[styles.border, {borderRightWidth:0}]} onPress={()=>{this.props.selectRoom(2);this.props.navigator.push({name: 'RoomDetail'})}}><Text style={styles.text}>ROOM 2</Text></TouchableOpacity>
+          <TouchableOpacity style={styles.border} onPress={()=>{this.props.selectRoom(3);this.props.navigator.push({name: 'RoomDetail'})}}><Text style={styles.text}>ROOM 3</Text></TouchableOpacity>
         </View>
         <TouchableOpacity style={[styles.border, {borderTopWidth: 0}]} onPress={()=>this.props.navigator.push({name: 'LeaderBoard'})}><Text style={styles.text}>LEADERBOARD</Text></TouchableOpacity>
       </View>

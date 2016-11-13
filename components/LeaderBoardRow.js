@@ -19,7 +19,7 @@ const mapDispatchToProps = dispatch => ({
              <Text>{props.room.id == "1" && trophy} </Text>
          </View>
          <Text style={styles.text}>{props.room.id+". "}</Text>
-         <Text style={[styles.roomNumber, styles.text]} onPress={()=> {props.selectRoom(props.room.id-1);props.navigator.push({name: 'RoomDetail'})}}>{props.room.name}: </Text>
+         <Text style={[styles.roomNumber, styles.text]} onPress={()=> {props.selectRoom(props.room.id);props.navigator.push({name: 'RoomDetail'})}}>{props.room.name}: </Text>
          <Text style={[styles.text, styles.today]}>{props.room.today}</Text>
          <Text style={styles.arrow}>
              {props.room.id == "1" && arrowUp}

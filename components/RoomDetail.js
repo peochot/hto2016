@@ -1,12 +1,10 @@
 import React, {Component} from 'react';
-import {ListView, Text, View, Image, StyleSheet, TouchableOpacity, Alert} from 'react-native';
+import {ListView, Text, View,ScrollView, Image, StyleSheet, TouchableOpacity, Alert} from 'react-native';
 import {connect} from 'react-redux';
 import Modal   from 'react-native-modalbox';
 
 const mapStateToProps = ({rooms,selectedRoom}) => ({rooms,selectedRoom});
 const styles = StyleSheet.create({
-  container : {
-  },
   content: {
     flex: 1,
     flexDirection: 'column',
@@ -14,12 +12,12 @@ const styles = StyleSheet.create({
     alignItems: 'center',
   },
   bigSize: {
-    fontSize: 50,
+    fontSize: 40,
     fontWeight: 'bold',
     color: 'orange'
   },
   smallSize: {
-    fontSize: 25,
+    fontSize: 20,
     fontWeight: 'bold',
     color: 'steelblue'
   },
@@ -34,22 +32,34 @@ const styles = StyleSheet.create({
   modal: {
     justifyContent: 'center',
     alignItems: 'center'
-  },  
+  },
   modal4: {
     height: 200
   },
   text: {
     color: "black",
     fontSize: 22
+  },
+  rowContainer:{
+    flex:1,
+    flexDirection:"row"
+  },
+  leftView:{
+    marginLeft:0,
+  },
+ rightView:{
+   justifyContent:"flex-end",
+   alignItems: 'flex-end',
+   flex:1,
   }
 });
 var happyPkm = require("../imgs/happy_pkm.png");
 var sadPkm = require("../imgs/sad_pkm.png");
-const alertMessage = 
+const alertMessage =
 <Text style={{color: 'red', fontWeight: 'bold', fontSize: 20}}>
   At 9:30, energy consumed for lightning peaked at 7 kWh. At 11:00, energy consumed for heating peaked at 10 kWh";
 </Text>;
-const efficientText = 
+const efficientText =
   <View>
     <Text style={{color: 'green', fontSize: 20}}>Keep up the good work!</Text>
   </View>;
@@ -57,6 +67,21 @@ class RoomDetail extends Component {
   constructor(props){
     super(props);
     this.props=props;
+    let room={}
+    let route = this.props.navigator.navigationContext.currentRoute;
+
+    if(this.props.selectedRoom==-1){
+      room.name="Company"
+      room.average = props.rooms.map((room)=>room.average).reduce((acc,next)=> acc + next);
+      room.today =  props.rooms.map((room)=>room.today).reduce((acc,next)=> acc + next);
+      room.yesterday = props.rooms.map((room)=>room.yesterday).reduce((acc,next)=> acc + next);
+      route.title = "Company Detail";
+    }else{
+      room = props.rooms.filter((room)=>room.id == this.props.selectedRoom)[0];
+      route.title = room.name;
+    }
+    this.room = room
+
     this.state = {
       sliderValue: 0.3
     };
@@ -71,22 +96,24 @@ class RoomDetail extends Component {
     const whyButton = <TouchableOpacity style={styles.border} onPress={this.openModal}><Text style={{color: 'white', fontSize: 18, fontWeight: 'bold'}}>Why ?</Text></TouchableOpacity>
     return (
       <View style={styles.content}>
+        <Text style={styles.bigSize}>Energy Cost
+        </Text>
         <Text style={styles.smallSize}>Monthly average :
-          <Text style={styles.bigSize}>{this.props.rooms[this.props.selectedRoom].average}</Text>
+            <Text style={[styles.bigSize]}>{this.room.average}</Text>
         </Text>
         <Text style={styles.smallSize}>Yesterday :
-          <Text style={styles.bigSize}>{this.props.rooms[this.props.selectedRoom].yesterday}</Text>
+          <Text style={styles.bigSize}>{this.room.yesterday}</Text>
         </Text>
         <Text style={styles.smallSize}>Today :
-          <Text style={styles.bigSize}>{this.props.rooms[this.props.selectedRoom].today}</Text>
+          <Text style={styles.bigSize}>{this.room.today}</Text>
         </Text>
-          <Image source={this.props.rooms[this.props.selectedRoom].today < this.props.rooms[this.props.selectedRoom].average ? happyPkm : sadPkm} resizeMode="stretch" style={{maxWidth: 190, height:200, marginTop: 25, marginBottom: 15}}/>
+          <Image source={this.room.today < this.room.average ? happyPkm : sadPkm} resizeMode="stretch" style={{maxWidth: 190, height:200, marginTop: 25, marginBottom: 15}}/>
           {
-            this.props.rooms[this.props.selectedRoom].today < this.props.rooms[this.props.selectedRoom].average ?
+            this.room.today < this.room.average ?
             efficientText : null
           }
           {
-            this.props.rooms[this.props.selectedRoom].today < this.props.rooms[this.props.selectedRoom].average ?
+            this.room.today < this.room.average ?
             null : whyButton
           }
         <Modal style={[styles.modal, styles.modal4]} position={"bottom"} ref={"modal4"}>
