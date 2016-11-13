@@ -19,7 +19,8 @@ const styles = StyleSheet.create({
   smallSize: {
     fontSize: 20,
     fontWeight: 'bold',
-    color: 'steelblue'
+    color: 'steelblue',
+    paddingTop:14
   },
   border: {
     padding: 10,
@@ -47,8 +48,15 @@ const styles = StyleSheet.create({
   leftView:{
     justifyContent:"flex-start",
     alignItems: 'flex-start',
+    marginLeft:50,
     flex:1,
   },
+  rightView:{
+    marginRight:50
+  },
+  title:{
+    marginBottom:20
+  }
 });
 var happyPkm = require("../imgs/happy_pkm.png");
 var sadPkm = require("../imgs/sad_pkm.png");
@@ -97,16 +105,15 @@ class RoomDetail extends Component {
         </Text>
         <View style={styles.rowContainer}>
           <Text style={[styles.smallSize,styles.leftView]}>Monthly average :</Text>
-          <Text style={styles.bigSize}>{this.room.average}</Text>
+          <Text style={[styles.bigSize,styles.rightView]}>{this.room.average}</Text>
         </View>
         <View style={styles.rowContainer}>
           <Text style={[styles.smallSize,styles.leftView]}>Yesterday : </Text>
-          <Text style={styles.bigSize}>{this.room.yesterday}</Text>
+          <Text style={[styles.bigSize,styles.rightView]}>{this.room.yesterday}</Text>
         </View>
         <View style={styles.rowContainer}>
-
           <Text style={[styles.smallSize,styles.leftView]}>Today :</Text>
-          <Text style={styles.bigSize}>{this.room.today}</Text>
+          <Text style={[styles.bigSize,styles.rightView]}>{this.room.today}</Text>
         </View>
 
           <Image source={this.room.today < this.room.average ? happyPkm : sadPkm} resizeMode="stretch" style={{maxWidth: 190, height:200, marginTop: 25, marginBottom: 15}}/>
